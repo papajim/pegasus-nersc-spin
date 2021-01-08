@@ -20,6 +20,8 @@ RUN yum -y update
 #### Install basic packages ####
 RUN yum -y install which java-1.8.0-openjdk-devel sudo mysql-devel postgresql-devel epel-release vim python python3 openssh-clients libgomp rsync perl perl-Data-Dumper
 
+RUN pip3 install --upgrade pip && pip3 install pyyaml gitpython
+
 #### Add automation user ####
 RUN groupadd -g 62982 ${USER_GROUP} && \
     useradd -s /bin/bash -u 74935 -g 62982 -m ${USER} && \
@@ -67,7 +69,7 @@ COPY sns-namd-shifter-example.tar.gz /home/${USER}
 RUN cd /home/${USER} && \
     tar -xzvf sns-namd-shifter-example.tar.gz && \
     rm -rf /home/${USER}/sns-namd-shifter-example.tar.gz && \
-    chown ${USER}:${USER_GROUP} -R /home/${USER}/sns-namd-shifter-example 
+    chown ${USER}:${USER_GROUP} -R ${HOME}
 
 USER ${USER}
 RUN echo "source /opt/bosco/bosco_setenv" >> ${HOME}/.bashrc
