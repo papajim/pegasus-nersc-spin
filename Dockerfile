@@ -18,7 +18,7 @@ ENV NERSC_HOME "/global/homes/p/papajim/${USER}"
 RUN yum -y update
 
 #### Install basic packages ####
-RUN yum -y install which java-1.8.0-openjdk-devel sudo mysql-devel postgresql-devel epel-release vim python python3 openssh-clients libgomp rsync perl perl-Data-Dumper
+RUN yum -y install which java-1.8.0-openjdk-devel sudo mysql-devel postgresql-devel epel-release vim git python python3 openssh-clients libgomp rsync perl perl-Data-Dumper
 
 RUN pip3 install --upgrade pip && pip3 install pyyaml gitpython
 
